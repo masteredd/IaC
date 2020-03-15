@@ -1,0 +1,1 @@
+server ansible_ssh_host=13.48.106.138 ansible_ssh_user=root
