@@ -1,6 +1,6 @@
 provider "aws" {
   region = "eu-north-1"
-  profile = "default"
+  profile = "myaws"
   shared_credentials_file = "~/.aws/credentials"
 }
 
@@ -68,6 +68,14 @@ resource "aws_security_group" "allow_ssh_http" {
     description = "allow HTTP"
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "allow flask app"
+    from_port   = 5000
+    to_port     = 5000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
