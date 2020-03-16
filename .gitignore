@@ -2,3 +2,5 @@
 terraform/*.pem
 terraform/*.exe
 terraform/.terraform/
+terraform
+ansible/main.retry

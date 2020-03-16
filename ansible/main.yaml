@@ -1,7 +1,23 @@
-hosts: all
-become: true
-tasks:
-  -name: Install docker
-  apt: 
-    pkg=docker.io
-    state=installed
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install docker
+    apt: 
+      pkg=docker.io
+      state=present
+      update_cache=yes
+
+  - name: Install pip
+    apt: name=python3-pip state=present
+
+  - name: install docker-py
+    pip: name=docker-py
+
+  - name: Running the container
+    docker_container:
+      name: anagram
+      image: masteredd/thewhiterabbit
+      ports:
+        - "5000:5000"
+      state: started
